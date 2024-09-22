@@ -1,0 +1,28 @@
+# Node modules directory
+node_modules/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# Public image uploads
+public/images/
+
+# Ignoring build or production directories
+dist/
+build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Optional npm cache directory
+.npm
