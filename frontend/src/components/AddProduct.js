@@ -24,9 +24,12 @@ export const AddProduct = () => {
     formData.append("price", price);
     formData.append("description", description);
     try {
+      const token = localStorage.getItem("token");
+      console.log("Token", token)
       await axios.post("http://localhost:5000/products", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
         },
       });
       navigate("/");
@@ -105,7 +108,9 @@ export const AddProduct = () => {
 
           <div className="field">
             <div className="control">
-              <button type="submit" className="button is-success">Save</button>
+              <button type="submit" className="button is-success">
+                Save
+              </button>
             </div>
           </div>
         </form>

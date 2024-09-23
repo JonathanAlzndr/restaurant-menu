@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export const ProductList = () => {
+export const ProductList = ({ isLoggedIn, isAdmin }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -22,9 +22,10 @@ export const ProductList = () => {
       console.log(error);
     }
   };
+
   return (
     <div className="container mt-5">
-      <Link to="/add" className="button is-success">Add New</Link>
+      {isAdmin && <Link to="/add" className="button is-success">Add New</Link>}
       <div className="columns is-multiline">
         {products.map((product) => (
           <div className="column is-one-quarter" key={product.id}>
@@ -42,11 +43,12 @@ export const ProductList = () => {
                     <p className="subtitle is-6">{product.description}</p>
                   </div>
                 </div>
-
-                <footer className="card-footer">
-                <Link to={`edit/${product.id}`} className="card-footer-item">Edit</Link>
-                <a onClick={() => deleteProduct(product.id)} className="card-footer-item button-as-link">Delete</a>
-                </footer>
+                {isAdmin && (
+                  <footer className="card-footer">
+                    <Link to={`edit/${product.id}`} className="card-footer-item">Edit</Link>
+                    <a onClick={() => deleteProduct(product.id)} className="card-footer-item button-as-link">Delete</a>
+                  </footer>
+                )}
               </div>
             </div>
           </div>
